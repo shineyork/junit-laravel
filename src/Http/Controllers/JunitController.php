@@ -25,7 +25,7 @@ class JunitController extends Controller
         $class = ($className == "") ? $namespace : $namespace.'\\'.$className;
         // 要提换的值  需要的结果
         $class = str_replace("/", "\\", $class);
-        $object = new $class();
+        $object = app($class);
         $param = ($param == "") ? [] : explode('|', $param) ;
         $data = call_user_func_array([$object, $action], $param);
         return (is_array($data)) ? json_encode($data) : dd($data);
